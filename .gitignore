@@ -51,3 +51,12 @@ screenshots/
 *.aac
 *.flac
 *.ogg
+
+# Local AI weights, exports, caches and credentials
+output/
+models/
+*.pth
+*.pt
+*.onnx
+*.safetensors
+.cache/

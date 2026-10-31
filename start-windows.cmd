@@ -20,6 +20,9 @@ if not errorlevel 1 goto launch
 ".venv\Scripts\python.exe" -m pip install -r requirements.txt
 if errorlevel 1 goto failed
 :launch
+if not exist "work\tmp" mkdir "work\tmp"
+set "TMP=%CD%\work\tmp"
+set "TEMP=%CD%\work\tmp"
 echo Open http://localhost:8000 in your browser.
 echo Keep this window open. Press Ctrl+C to stop.
 ".venv\Scripts\python.exe" -m uvicorn app.main:app --host 0.0.0.0 --port 8000

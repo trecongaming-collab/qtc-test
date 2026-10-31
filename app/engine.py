@@ -156,7 +156,7 @@ def render(videos, music, folder, duration, ramp, nature, update, width=1080, he
     if not music:
         music = folder/'ambient.wav'; ambient(music,duration)
     report = dict(method='Heuristic, không dùng AI ngữ nghĩa', bpm=bpm, beat_phase=phase, music_note=note, analysis_fps=2, candidates=len(candidates), selected=shots, warnings=['Cắt dọc giữa khung hình; chưa theo dõi chủ thể.', 'Độ rung chỉ ước lượng qua sai khác khung hình; không phải chống rung.', 'Màu SDR cố định; chưa có chuyển đổi HDR/D-Log chuyên biệt.'])
-    (folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+    (folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
     for i,shot in enumerate(shots):
         update(32+int(i/len(shots)*53),f'Dựng cảnh {i+1}/{len(shots)}')
         length=shot['length']; use_ramp=shot['ramp']
@@ -184,7 +184,7 @@ def render(videos, music, folder, duration, ramp, nature, update, width=1080, he
     ff('-i',folder/'joined.mp4','-stream_loop',-1,'-i',music,'-filter_complex',mix,'-map','0:v:0','-map','[out]','-c:v','copy','-c:a','aac','-b:a','192k','-t',duration,'-movflags','+faststart',folder/'result.mp4')
     actual=probe(folder/'result.mp4')
     report['output']={'duration':actual['duration'],'width':actual['video']['width'],'height':actual['video']['height'],'fps':actual['video']['r_frame_rate'],'codec':actual['video']['codec_name']}
-    (folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+    (folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
     for p in folder.glob('clip*.mp4'): p.unlink()
     (folder/'joined.mp4').unlink()
     return report
