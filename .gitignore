@@ -22,3 +22,32 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+work/
+.venv/
+__pycache__/
+*.pyc
+
+# Private uploads, generated media and credentials
+attachments/
+uploads/
+data/
+outputs/
+screenshots/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.mkv
+*.m4v
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.flac
+*.ogg
